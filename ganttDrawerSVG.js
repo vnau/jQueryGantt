@@ -738,7 +738,7 @@ Ganttalendar.prototype.redrawTasks = function (drawAll) {
   }
 
   //creates rows grid
-  for (var i = 40; i <= self.master.editor.element.height(); i += self.master.rowHeight)
+  for (var i = 60; i <= self.master.editor.element.height(); i += self.master.rowHeight)
     self.svg.rect(gridGroup, 0, i, "100%", self.master.rowHeight, {class: "ganttLinesSVG"});
 
   // drawTodayLine
