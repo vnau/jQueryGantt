@@ -1651,7 +1651,7 @@ GanttMaster.prototype.manageSaveRequired = function (ev, showSave) {
   function checkChanges() {
     var changes = false;
     //there is somethin in the redo stack?
-    if (self.__undoStack.length > 0) {
+    if (self.__undoStack && self.__undoStack.length > 0) {
       var oldProject = JSON.parse(self.__undoStack[0]);
       //si looppano i "nuovi" task
       for (var i = 0; !changes && i < self.tasks.length; i++) {
