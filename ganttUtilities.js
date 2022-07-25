@@ -133,7 +133,7 @@ $.gridify = function (table, opt) {
     columnTd.each(function () {
       var td = $(this);
       var content = td.children("input").length ? td.children("input").val() : td.html();
-      var tmp = $("<div/>").addClass("columnWidthTest").html(content).css({position: "absolute"});
+      var tmp = $("<div/>").addClass("columnWidthTest").html(content).css({ position: "absolute" });
       $("body").append(tmp);
       w = Math.max(w, tmp.width() + parseFloat(td.css("padding-left")));
       tmp.remove();
@@ -199,18 +199,18 @@ $.splittify = {
 
 
     var splitter = new Splitter(element, firstBox, secondBox, splitterBar);
-    splitter.perc =  perc;
+    splitter.perc = perc;
 
     //override with saved one
     loadPosition();
 
-    var toLeft = $("<div>").addClass("toLeft").html("{").click(function () {splitter.resize(0.001, 300);});
+    var toLeft = $("<div>").addClass("toLeft").html("{").click(function () { splitter.resize(0.001, 300); });
     splitterBar.append(toLeft);
 
-    var toCenter = $("<div>").addClass("toCenter").html("&#xa9;").click(function () {splitter.resize(50, 300);});
+    var toCenter = $("<div>").addClass("toCenter").html("&#xa9;").click(function () { splitter.resize(50, 300); });
     splitterBar.append(toCenter);
 
-    var toRight = $("<div>").addClass("toRight").html("}").click(function () {splitter.resize(99.9999, 300);});
+    var toRight = $("<div>").addClass("toRight").html("}").click(function () { splitter.resize(99.9999, 300); });
     splitterBar.append(toRight);
 
 
@@ -225,9 +225,9 @@ $.splittify = {
     var splW = splitterBar.width();
     var fbw = totalW * perc / 100 - splW;
     fbw = fbw > totalW - splW - splitter.secondBoxMinWidth ? totalW - splW - splitter.secondBoxMinWidth : fbw;
-    firstBox.width(fbw).css({left: 0});
-    splitterBar.css({left: firstBox.width()});
-    secondBox.width(totalW - fbw - splW).css({left: firstBox.width() + splW});
+    firstBox.width(fbw).css({ left: 0 });
+    splitterBar.css({ left: firstBox.width() });
+    secondBox.width(totalW - fbw - splW).css({ left: firstBox.width() + splW });
 
     splitterBar.on("mousedown.gdf", function (e) {
 
@@ -249,9 +249,9 @@ $.splittify = {
         pos = pos > splitter.firstBoxMinWidth ? pos : splitter.firstBoxMinWidth;
         //pos = pos < realW - 10 ? pos : realW - 10;
         pos = pos > totalW - splW - splitter.secondBoxMinWidth ? totalW - splW - splitter.secondBoxMinWidth : pos;
-        sb.css({left: pos});
+        sb.css({ left: pos });
         firstBox.width(pos);
-        secondBox.css({left: pos + sb.width(), width: w - pos - sb.width()});
+        secondBox.css({ left: pos + sb.width(), width: w - pos - sb.width() });
         splitter.perc = (firstBox.width() / splitter.element.width()) * 100;
 
         //on mouse up on body to stop resizing
@@ -270,7 +270,7 @@ $.splittify = {
     // keep both side in synch when scroll
     var stopScroll = false;
     var fs = firstBox.add(secondBox);
-    var lastScrollTop=0;
+    var lastScrollTop = 0;
     fs.scroll(function (e) {
       var el = $(this);
       var top = el.scrollTop();
@@ -287,19 +287,19 @@ $.splittify = {
       }
 
 
-      if (Math.abs(top-lastScrollTop)>10) {
-	    firstBoxHeader.css('top', top).hide();
-	    secondBoxHeader.css('top', top).hide();
+      if (Math.abs(top - lastScrollTop) > 10) {
+        firstBoxHeader.css('top', top).hide();
+        secondBoxHeader.css('top', top).hide();
       }
-      lastScrollTop=top;
+      lastScrollTop = top;
 
       where.stopTime("reset").oneTime(100, "reset", function () {
 
-	      stopScroll = "";
-	      top = el.scrollTop();
+        stopScroll = "";
+        top = el.scrollTop();
 
-	      firstBoxHeader.css('top', top).fadeIn();
-	      secondBoxHeader.css('top', top).fadeIn();
+        firstBoxHeader.css('top', top).fadeIn();
+        secondBoxHeader.css('top', top).fadeIn();
 
       });
 
@@ -326,7 +326,7 @@ $.splittify = {
       var scrollToY = secondBox.scrollTop() - deltaY;
       var scrollToX = firstBox.scrollLeft() - deltaX;
 
-//			console.debug( firstBox.scrollLeft(), Math.abs(deltaX), Math.abs(deltaY));
+      //			console.debug( firstBox.scrollLeft(), Math.abs(deltaX), Math.abs(deltaY));
 
       if (deltaY) secondBox.scrollTop(scrollToY);
       if (deltaX) firstBox.scrollLeft(scrollToX);
@@ -352,9 +352,9 @@ $.splittify = {
         var newW = totalW * this.perc / 100;
         newW = newW > this.firstBoxMinWidth ? newW : this.firstBoxMinWidth;
         newW = newW > totalW - splW - splitter.secondBoxMinWidth ? totalW - splW - splitter.secondBoxMinWidth : newW;
-        this.firstBox.animate({width: newW}, animTime, function () {$(this).css("overflow-x", "auto")});
-        this.splitterBar.animate({left: newW}, animTime);
-        this.secondBox.animate({left: newW + this.splitterBar.width(), width: totalW - newW - splW}, animTime, function () {$(this).css("overflow", "auto")});
+        this.firstBox.animate({ width: newW }, animTime, function () { $(this).css("overflow-x", "auto") });
+        this.splitterBar.animate({ left: newW }, animTime);
+        this.secondBox.animate({ left: newW + this.splitterBar.width(), width: totalW - newW - splW }, animTime, function () { $(this).css("overflow", "auto") });
 
         storePosition();
       };
@@ -366,18 +366,18 @@ $.splittify = {
     }
 
 
-    function storePosition () {
+    function storePosition() {
       //console.debug("storePosition",splitter.perc);
       if (localStorage) {
-        localStorage.setItem("TWPGanttSplitPos",splitter.perc);
+        localStorage.setItem("TWPGanttSplitPos", splitter.perc);
       }
     }
 
-    function loadPosition () {
+    function loadPosition() {
       //console.debug("loadPosition");
       if (localStorage) {
         if (localStorage.getItem("TWPGanttSplitPos")) {
-          splitter.perc=parseFloat(localStorage.getItem("TWPGanttSplitPos"));
+          splitter.perc = parseFloat(localStorage.getItem("TWPGanttSplitPos"));
         }
       }
     }
@@ -392,16 +392,18 @@ $.splittify = {
 
 //<%------------------------------------------------------------------------  UTILITIES ---------------------------------------------------------------%>
 // same dates returns 1
-function getDurationInUnits(start,end){
-  return start.distanceInWorkingDays(end)+1; // working in days
+function getDurationInUnits(start, end) {
+  if (start.getTime() == end.getTime())
+    return 0;
+  return start.distanceInWorkingDays(end) + 1; // working in days
 }
 
 //con due date uguali ritorna 0: usata per cancolare la distanza effettiva tra due date
-function getDistanceInUnits(date1,date2){
+function getDistanceInUnits(date1, date2) {
   return date1.distanceInWorkingDays(date2); // working in days
 }
 
-function incrementDateByUnits(date,duration){
+function incrementDateByUnits(date, duration) {
   date.incrementDateByWorkingDays(duration); // working in days
   return date;
 }
@@ -447,7 +449,7 @@ function computeEndDate(end) {
 }
 
 function computeEndByDuration(start, duration) {
-//console.debug("computeEndByDuration start ",d,duration)
+  //console.debug("computeEndByDuration start ",d,duration)
   var d = new Date(start);
   var q = duration - 1;
   while (q > 0) {
@@ -455,7 +457,8 @@ function computeEndByDuration(start, duration) {
     if (!isHoliday(d))
       q--;
   }
-  d.setHours(23, 59, 59, 999);
+  if (duration > 0)
+    d.setHours(23, 59, 59, 999);
   return d.getTime();
 }
 
@@ -469,7 +472,7 @@ function incrementDateByWorkingDays(date, days) {
 
 function recomputeDuration(start, end) {
   //console.debug("recomputeDuration");
-  return getDurationInUnits(new Date(start),new Date(end));
+  return getDurationInUnits(new Date(start), new Date(end));
 }
 
 function resynchDates(leavingField, startField, startMilesField, durationField, endField, endMilesField) {
@@ -490,25 +493,29 @@ function resynchDates(leavingField, startField, startMilesField, durationField, 
     var date = new Date();
     if ("CHANGE_END" == command) {
       date.setTime(start);
-      var workingUnits = duration-1; // if we do not decremet a task lasting two days starting on 10 will end on 12 (at 00:00) instead of on (at 23:59)
-      incrementDateByUnits(date,workingUnits);
-      date.setHours(23, 59, 59, 999); //this is necessary because compute end get the closest end, and parseString returns 00:00
-      end = computeEnd(date.getTime()); // not strictly necessary
+      if (duration == 0) {
+        end = start;
+      } else {
+        var workingUnits = duration - 1; // if we do not decremet a task lasting two days starting on 10 will end on 12 (at 00:00) instead of on (at 23:59)
+        incrementDateByUnits(date, workingUnits);
+        date.setHours(23, 59, 59, 999); //this is necessary because compute end get the closest end, and parseString returns 00:00
+        end = computeEnd(date.getTime()); // not strictly necessary
+      }
     } else if ("CHANGE_START" == command) {
       date.setTime(end);
       var workingUnits = duration - 1; // if we do not decremet a task lasting two days starting on 10 will end on 12 (at 00:00) instead of on (at 23:59)
-      incrementDateByUnits(date,-workingUnits);
+      incrementDateByUnits(date, -workingUnits);
       date.setHours(0, 0, 0, 0); //this is necessary because decreasing end we are at 23:50
       start = computeStart(date.getTime()); //not strictly necessary
     } else if ("CHANGE_DURATION" == command) {
-      duration = getDurationInUnits(new Date(start),new Date(end)) + 1; 
+      duration = getDurationInUnits(new Date(start), new Date(end)) + 1;
     }
 
     startField.val(new Date(start).format());
     endField.val(new Date(end).format());
     durationField.val(durationToString(duration));
 
-    return {start: start, end: end, duration: duration};
+    return { start: start, end: end, duration: duration };
   }
 
   var leavingFieldName = leavingField.prop("name");
@@ -587,7 +594,9 @@ function durationToString(d) {
 
 function stringToDuration(durStr) {
   var duration = NaN;
-  duration = daysFromString(durStr, true) || 1;
+  duration = daysFromString(durStr, true);
+  if (!duration && duration != 0)
+    duration = 1;
   return duration;
 }
 
