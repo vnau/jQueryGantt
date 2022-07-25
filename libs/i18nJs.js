@@ -109,7 +109,7 @@ Date.dayAbbreviations = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 Date.preferAmericanFormat = false;
 
 Date.firstDayOfWeek =0;
-Date.defaultFormat = "M/d/yyyy";
+Date.defaultFormat = "dd.MM.yyyy";
 Date.masks = {
   fullDate:       "EEEE, MMMM d, yyyy",
   shortTime:      "h:mm a"

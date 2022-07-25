@@ -24,7 +24,7 @@ Date.dayNames = new Array('Sunday','Monday','Tuesday','Wednesday','Thursday','Fr
 Date.dayAbbreviations = new Array('Sun','Mon','Tue','Wed','Thu','Fri','Sat');
 // Used for parsing ambiguous dates like 1/2/2000 - default to preferring 'American' format meaning Jan 2.
 // Set to false to prefer 'European' format meaning Feb 1
-Date.preferAmericanFormat = true;
+Date.preferAmericanFormat = false;
 
 // Set to 0=SUn for American 1=Mon for european
 Date.firstDayOfWeek = 0;
